@@ -296,6 +296,10 @@ static struct flb_output_instance *setup_cloud_output(struct flb_config *config,
         flb_output_set_property(cloud, "tls.verify", "false");
     }
 
+    if (ctx->fleet_id) {
+        flb_output_set_property(cloud, "fleet_id", ctx->fleet_id);
+    }
+
 #ifdef FLB_HAVE_CHUNK_TRACE
     flb_output_set_property(cloud, "pipeline_id", ctx->pipeline_id);
 #endif /* FLB_HAVE_CHUNK_TRACE */
@@ -377,6 +381,9 @@ static int cb_calyptia_init(struct flb_custom_instance *ins,
         }
         if (ctx->fleet_config_dir) {
             flb_input_set_property(ctx->fleet, "config_dir", ctx->fleet_config_dir);
+        }
+        if (ctx->machine_id) {
+            flb_input_set_property(ctx->fleet, "machine_id", ctx->machine_id);
         }
     }
 
