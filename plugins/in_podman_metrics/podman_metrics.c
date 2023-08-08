@@ -59,6 +59,7 @@ static int collect_container_data(struct flb_in_metrics *ctx)
 
     flb_utils_read_file(ctx->config, &buffer, &read_bytes);
     if (!read_bytes) {
+        flb_errno();
         flb_plg_warn(ctx->ins, "Failed to open %s", ctx->config);
         return -1;
     }

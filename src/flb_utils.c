@@ -1296,14 +1296,12 @@ int flb_utils_read_file(char *path, char **out_buf, size_t *out_size)
 
     buf = flb_calloc(1, st.st_size + 1);
     if (!buf) {
-        flb_errno();
         fclose(fp);
         return -1;
     }
 
     bytes = fread(buf, st.st_size, 1, fp);
     if (bytes < 1) {
-        flb_errno();
         flb_free(buf);
         fclose(fp);
         return -1;

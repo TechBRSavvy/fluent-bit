@@ -129,6 +129,7 @@ static int get_machine_id(struct flb_calyptia *ctx, char **out_buf, size_t *out_
     /* retrieve raw machine id */
     ret = flb_utils_get_machine_id(&buf, &s);
     if (ret == -1) {
+        flb_errno();
         flb_plg_error(ctx->ins, "could not obtain machine id");
         return -1;
     }
